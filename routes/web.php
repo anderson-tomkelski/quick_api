@@ -1,0 +1,28 @@
+<?php
+
+/*
+|--------------------------------------------------------------------------
+| Application Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register all of the routes for an application.
+| It is a breeze. Simply tell Lumen the URIs it should respond to
+| and give it the Closure to call when that URI is requested.
+|
+*/
+
+$router->get('/', function () use ($router) {
+    return $router->app->version();
+});
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->get('relato_tipo',  ['uses' => 'RelatoTipoController@showAllRelatoTipo']);
+  
+    $router->get('relato_tipo/{id}', ['uses' => 'RelatoTipoController@showOneRelatoTipo']);
+  
+    $router->post('relato_tipo', ['uses' => 'RelatoTipoController@create']);
+  
+    $router->delete('relato_tipo/{id}', ['uses' => 'RelatoTipoController@delete']);
+  
+    $router->put('relato_tipo/{id}', ['uses' => 'RelatoTipoController@update']);
+  });
