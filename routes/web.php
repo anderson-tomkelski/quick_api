@@ -17,12 +17,14 @@ $router->get('/', function () use ($router) {
 
 $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('relato_tipo',  ['uses' => 'RelatoTipoController@showAllRelatoTipo']);
-  
     $router->get('relato_tipo/{id}', ['uses' => 'RelatoTipoController@showOneRelatoTipo']);
-  
     $router->post('relato_tipo', ['uses' => 'RelatoTipoController@create']);
-  
     $router->delete('relato_tipo/{id}', ['uses' => 'RelatoTipoController@delete']);
-  
     $router->put('relato_tipo/{id}', ['uses' => 'RelatoTipoController@update']);
+
+    $router->get('relato_local',  ['uses' => 'RelatoLocalController@showAllRelatoLocal']);
+
+    $router->get('especificacao_relato', 
+        ['uses' => 'EspecificacaoRelatoController@showAllEspecificacaoRelato']
+    );
   });
