@@ -24,7 +24,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->get('relato_local',  ['uses' => 'RelatoLocalController@showAllRelatoLocal']);
 
-    $router->get('especificacao_relato', 
-        ['uses' => 'EspecificacaoRelatoController@showAllEspecificacaoRelato']
-    );
+    $router->get('relato_motivo', ['uses' => 'RelatoMotivoController@showAllRelatoMotivo']);
+
+    
   });
