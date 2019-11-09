@@ -26,5 +26,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
 
     $router->get('relato_motivo', ['uses' => 'RelatoMotivoController@showAllRelatoMotivo']);
 
+    $router->get('relato_infracao', ['uses' => 'RelatoInfracaoController@showAllRelatoInfracao']);
+
     
   });
