@@ -12,4 +12,13 @@ class RelatoInfracaoController extends Controller
     {
         return response()->json(RelatoInfracao::all());
     }
+
+    public function showRelatoTipoByIds($idTipo, $idLocal, $idMotivo)
+    {
+        return response()->json(RelatoInfracao::where(
+            'id_tipo', '=', $idTipo)->where(
+            'id_local', '=', $idLocal)->where(
+            'id_motivo', '=', $idMotivo)->get()
+        );
+    }
 }
