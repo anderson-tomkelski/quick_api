@@ -31,4 +31,8 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('relato_infracao/tipo/{id_tipo}/local/{id_local}/motivo/{id_motivo}',
         ['uses' => 'RelatoInfracaoController@showRelatoTipoByIds']
     );
+
+    $router->get('relato', ['uses' => 'RelatoController@showAllRelato']);
+    $router->get('relato/{id}', ['uses' => 'RelatoController@showOneRelato']);
+    $router->post('relato', ['uses' => 'RelatoController@create']);
   });
