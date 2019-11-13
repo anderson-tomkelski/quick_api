@@ -35,4 +35,7 @@ $router->group(['prefix' => 'api'], function () use ($router) {
     $router->get('relato', ['uses' => 'RelatoController@showAllRelato']);
     $router->get('relato/{id}', ['uses' => 'RelatoController@showOneRelato']);
     $router->post('relato', ['uses' => 'RelatoController@create']);
+
+    $router->get('funcao', ['uses' => 'FuncaoController@searchFuncao']);
+    $router->get('funcao/{id}', ['uses' => 'FuncaoController@showOneFuncao']);
   });
