@@ -53,3 +53,4 @@ $router->group(['prefix' => 'api', 'middleware' => 'autenticador'], function () 
 });
 
 $router->post('/api/login', 'TokenController@gerarToken');
+$router->post('/api/login/company', 'TokenController@gerarTokenEmpresa');
