@@ -11,31 +11,45 @@
 |
 */
 
+/** @var \Laravel\Lumen\Routing\Router $router */
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->group(['prefix' => 'api'], function () use ($router) {
-    $router->get('relato_tipo',  ['uses' => 'RelatoTipoController@showAllRelatoTipo']);
-    $router->get('relato_tipo/{id}', ['uses' => 'RelatoTipoController@showOneRelatoTipo']);
-    $router->post('relato_tipo', ['uses' => 'RelatoTipoController@create']);
-    $router->delete('relato_tipo/{id}', ['uses' => 'RelatoTipoController@delete']);
-    $router->put('relato_tipo/{id}', ['uses' => 'RelatoTipoController@update']);
+$router->group(['prefix' => 'api', 'middleware' => 'autenticador'], function () use ($router) {
+    $router->group(['prefix' => 'relato_tipo'], function () use ($router) {
+        $router->get('', 'RelatoTipoController@showAllRelatoTipo');
+        $router->get('{id}', 'RelatoTipoController@showOneRelatoTipo');
+        $router->post('',  'RelatoTipoController@create');
+        $router->delete('{id}', 'RelatoTipoController@delete');
+        $router->put('{id}', 'RelatoTipoController@update');
+    });
 
-    $router->get('relato_local',  ['uses' => 'RelatoLocalController@showAllRelatoLocal']);
+    $router->group(['prefix' => 'relato_local'], function () use ($router) {
+        $router->get('', 'RelatoLocalController@showAllRelatoLocal');
+    });
 
-    $router->get('relato_motivo', ['uses' => 'RelatoMotivoController@showAllRelatoMotivo']);
+    $router->group(['prefix' => 'relato_motivo'], function () use ($router) {
+        $router->get('', 'RelatoMotivoController@showAllRelatoMotivo');
+    });
 
-    $router->get('relato_infracao', ['uses' => 'RelatoInfracaoController@showAllRelatoInfracao']);
+    $router->group(['prefix' => 'relato_infracao'], function () use ($router) {
+        $router->get('', 'RelatoInfracaoController@showAllRelatoInfracao');
+        $router->get('tipo/{id_tipo}/local/{id_local}/motivo/{id_motivo}',
+        'RelatoInfracaoController@showRelatoTipoByIds'
+        );
+    });
 
-    $router->get('relato_infracao/tipo/{id_tipo}/local/{id_local}/motivo/{id_motivo}',
-        ['uses' => 'RelatoInfracaoController@showRelatoTipoByIds']
-    );
+    $router->group(['prefix' => 'relato'], function () use ($router) {
+        $router->get('', 'RelatoController@showAllRelato');
+        $router->get('{id}', 'RelatoController@showOneRelato');
+        $router->post('', 'RelatoController@create');
+    });
 
-    $router->get('relato', ['uses' => 'RelatoController@showAllRelato']);
-    $router->get('relato/{id}', ['uses' => 'RelatoController@showOneRelato']);
-    $router->post('relato', ['uses' => 'RelatoController@create']);
+    $router->group(['prefix' => 'funcao'], function () use ($router) {
+        $router->get('', 'FuncaoController@showAllFuncao');
+        $router->get('{id}', 'FuncaoController@showOneFuncao');
+    });
+});
 
-    $router->get('funcao', ['uses' => 'FuncaoController@showAllFuncao']);
-    $router->get('funcao/{id}', ['uses' => 'FuncaoController@showOneFuncao']);
-  });
+$router->post('/api/login', 'TokenController@gerarToken');
