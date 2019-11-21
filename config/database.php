@@ -1,13 +1,13 @@
 <?php
 
 return array(
-    'default' => 'maindb',
+    'default' => 'tenant',
     'connections' => array(
         # Our primary database connection
-        'maindb' => array(
+        'tenant' => array(
             'driver'    => 'mysql',
             'host'      => '127.0.0.1',
-            'database'  => 'quickgestao',
+            'database'  => '',
             'username'  => 'admin',
             'password'  => 'Mudar@123',
             'charset'   => 'utf8',

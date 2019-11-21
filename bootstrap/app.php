@@ -72,6 +72,10 @@ $app->routeMiddleware([
     'autenticador' => \App\Http\Middleware\Autenticador::class,
 ]);
 
+$app->routeMiddleware([
+    'tenant' => \App\Http\Middleware\Tenant::class,
+]);
+
 /*
 |--------------------------------------------------------------------------
 | Register Service Providers
