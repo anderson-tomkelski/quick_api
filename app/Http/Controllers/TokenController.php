@@ -53,6 +53,9 @@ class TokenController extends Controller
             env('JWT_KEY')
         );
 
-        return ['access_token' => $token, 'tenant' => $empresa->base];
+        return ['access_token' => $token, 
+            'tenant' => $empresa->base, 
+            'domain' => $empresa->dominio
+        ];
     }
 }
