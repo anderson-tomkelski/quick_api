@@ -36,7 +36,7 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
     $router->group(['prefix' => 'relato_infracao'], function () use ($router) {
         $router->get('', 'RelatoInfracaoController@showAllRelatoInfracao');
         $router->get('tipo/{id_tipo}/local/{id_local}/motivo/{id_motivo}',
-        'RelatoInfracaoController@showRelatoTipoByIds'
+        'RelatoInfracaoController@showRelatoInfracaoByIds'
         );
     });
 
