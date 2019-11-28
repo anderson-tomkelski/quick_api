@@ -43,7 +43,7 @@ class TokenController extends Controller
         $usuario = User::where('usuario', $request->usuario)->first();
 
         if(is_null($usuario)
-            || password_verify($request->senha, $usuario->senha)
+            || !password_verify($request->senha, $usuario->senha)
         ) {
             return response()->json('Usuário ou senha inválidos', 401);
         }

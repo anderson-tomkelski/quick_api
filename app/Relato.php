@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Relato extends Model
 {
+    protected $table = 'relato';
 
     /**
      * The attributes that are mass assignable.
