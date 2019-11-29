@@ -50,6 +50,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         $router->get('', 'FuncaoController@showAllFuncao');
         $router->get('{id}', 'FuncaoController@showOneFuncao');
     });
+
+    $router->group(['prefix' => 'usuario'], function () use ($router) {
+        $router->post('', 'UsuarioController@showUsuarioByLogin');
+    });
 });
 
 $router->post('/api/login', 'TokenController@gerarToken');
