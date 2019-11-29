@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Usuario;
 use Illuminate\Http\Request;
 
 class UsuarioController extends Controller
@@ -10,16 +10,16 @@ class UsuarioController extends Controller
 
     public function showAllUsuario()
     {
-        return response()->json(user::all());
+        return response()->json(Usuario::all());
     }
 
     public function showOneUsuario($id)
     {
-        return response()->json(User::find($id));
+        return response()->json(Usuario::find($id));
     }
 
     public function showUsuarioByLogin(Request $request)
     {
-        return response()->json(User::where('usuario', $request->usuario)->first());
+        return response()->json(Usuario::where('usuario', $request->usuario)->first());
     }
 }

@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 
-use App\User;
+use App\Login;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 
@@ -17,7 +17,7 @@ class Autenticador
             $token = str_replace('Bearer ', '', $authorizationHeader);
             $dadosAutenticacao = JWT::decode($token, env('JWT_KEY'), ['HS256']);
 
-            $user = User::where('usuario', $dadosAutenticacao->usuario)
+            $user = Login::where('usuario', $dadosAutenticacao->usuario)
                 ->first();
             if (is_null($user)) {
                 throw new \Exception();
