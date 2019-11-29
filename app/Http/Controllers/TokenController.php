@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Login;
 use App\Empresa;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
@@ -17,7 +17,7 @@ class TokenController extends Controller
             'usuario' => 'required|usuario',
             'senha' => 'required'
         ]);*/
-        $usuario = User::where('usuario', $request->usuario)->first();
+        $usuario = Login::where('usuario', $request->usuario)->first();
 
         if(is_null($usuario)
             || password_verify($request->senha, $usuario->senha)
@@ -40,7 +40,7 @@ class TokenController extends Controller
         config(['database.connections.tenant.database' => $empresa->base]);
         //config(['database.connections.tenant.username' => $empresa->base]);
 
-        $usuario = User::where('usuario', $request->usuario)->first();
+        $usuario = Login::where('usuario', $request->usuario)->first();
 
         if(is_null($usuario)
             || !password_verify($request->senha, $usuario->senha)

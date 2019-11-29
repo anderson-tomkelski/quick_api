@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Middleware;
 
-use App\User;
+use App\Login;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 
