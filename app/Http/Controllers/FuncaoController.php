@@ -9,7 +9,7 @@ class FuncaoController extends Controller
 {
     public function showAllFuncao()
     {
-        return response()->json(Funcao::all());
+        return response()->json(Funcao::orderBy('funcao')->get());
     }
 
     public function showOneFuncao($id)
