@@ -58,6 +58,7 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
     $router->group(['prefix' => 'formulario'], function () use ($router) {
         $router->post('', 'CheckListController@showAllCheckList');
         $router->post('pendentes', 'CheckListController@showPendetesCheckList');
+        $router->delete('pendentes/{id}', 'CheckListController@deletePendenteCheckList');
         $router->post('concluidos', 'CheckListController@showConcluidosCheckList');
     });
 });
