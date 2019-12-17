@@ -60,6 +60,6 @@ class CheckListController extends Controller
         DB::table('formulario_comentario')->where('id_formulario_ref', $id)->delete();
         DB::table('formularios_salvos')->where('id_formulario_salvo', $id)->delete();
         DB::table('formularios_fechamento')->where('id', $id)->delete();
-        return response('Deleted Successfully', 200);
+        return response()->json('Deleted Successfully', 200);
     }
 }
