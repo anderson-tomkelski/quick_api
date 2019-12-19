@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Pergunta;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -62,4 +63,13 @@ class CheckListController extends Controller
         DB::table('formularios_fechamento')->where('id', $id)->delete();
         return response()->json('Deleted Successfully', 200);
     }
+
+    public function showAllPerguntas($formId)
+    {
+        return response()->json(Pergunta::where(
+            'id_formulario', '=', $formId)->get()
+        );
+    }
+
+
 }
