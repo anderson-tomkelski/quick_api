@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pergunta;
+use App\Assunto;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Facades\DB;
@@ -64,9 +65,16 @@ class CheckListController extends Controller
         return response()->json('Deleted Successfully', 200);
     }
 
-    public function showAllPerguntas($formId)
+    public function showPerguntasByFormId($formId)
     {
         return response()->json(Pergunta::where(
+            'id_formulario', '=', $formId)->get()
+        );
+    }
+
+    public function showAssuntosByFormId($formId)
+    {
+        return response()->json(Assunto::where(
             'id_formulario', '=', $formId)->get()
         );
     }

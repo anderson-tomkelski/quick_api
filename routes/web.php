@@ -61,7 +61,8 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         $router->delete('pendentes/{id}', 'CheckListController@deletePendenteCheckList');
         $router->post('concluidos', 'CheckListController@showConcluidosCheckList');
 
-        $router->get('perguntas/{formId}', 'CheckListController@showAllPerguntas');
+        $router->get('assuntos/{formId}', 'CheckListController@showAssuntosByFormId');
+        $router->get('perguntas/{formId}', 'CheckListController@showPerguntasByFormId');
     });
 });
 
