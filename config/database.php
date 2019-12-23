@@ -8,7 +8,7 @@ return array(
             'driver'    => 'mysql',
             'host'      => '179.188.52.24',
             'database'  => '',
-            'username'  => 'quickgestao',
+            'username'  => '',
             'password'  => 'Lino2019@',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
