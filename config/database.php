@@ -9,7 +9,7 @@ return array(
             'host'      => '179.188.52.24',
             'database'  => '',
             'username'  => 'quickgestao',
-            'password'  => 'Acb2019@',
+            'password'  => 'Lino2019@',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
