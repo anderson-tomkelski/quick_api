@@ -75,7 +75,7 @@ class CheckListController extends Controller
     public function showAssuntosByFormId($formId)
     {
         return response()->json(Assunto::where(
-            'id_formulario', '=', $formId)->get()
+            'id_formulario', '=', $formId)->orderBy('ordem')->get()
         );
     }
 
