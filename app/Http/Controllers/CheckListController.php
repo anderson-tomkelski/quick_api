@@ -84,14 +84,14 @@ class CheckListController extends Controller
             [
                 'id_formulario_ref' => $request->id_formulario_ref,
                 'id_usuario' => $request->id_usuario,
-                'comentarios' => $request->comentarios,
-                'anexo' => $request->anexo,
-                'data' => $request->data,
-                'qtd_b' => $request->qtd_b,
-                'qtd_ok' => $request->qtd_ok,
-                'qtd_nok' => $request->qtd_nok,
+                'comentarios' => isset($request->comentarios) ? $request->comentarios : "",
+                'anexo' => isset($request->anexo) ? $request->anexo : "",
+                'data' => isset($request->data) ? $request->data : null,
+                'qtd_b' => isset($request->qtd_b) ? $request->qtd_b : 0,
+                'qtd_ok' => isset($request->qtd_ok) ? $request->qtd_ok : 0,
+                'qtd_nok' => isset($request->qtd_nok) ? $request->qtd_nok : 0,
                 'id_empresa' => $request->id_empresa,
-                'perct' => $request->perct,
+                'perct' => isset($request->perct) ? $request->perct : 0,
                 'status' => 1
             ]
         );
