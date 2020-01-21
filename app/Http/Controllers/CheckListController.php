@@ -119,12 +119,22 @@ class CheckListController extends Controller
 
         foreach($questions as $question){
             if(!isset($question['foto']) || $question['foto'] == null) continue;
-            error_log(strlen($question['foto']), 4);
             $savedChecklist = DB::table('formulario_fotos')->insert(
                 [
                     'id_formulario_ref' => $closureChecklistId,
                     'id_pergunta' => isset($question['id_pergunta']) ? $question['id_pergunta'] : null,
                     'foto' => isset($question['foto']) ? $question['foto'] : null,
+                ]
+            );
+        }
+
+        foreach($questions as $question){
+            if(!isset($question['comentario']) || $question['comentario'] == null) continue;
+            $savedChecklist = DB::table('formulario_comentario')->insert(
+                [
+                    'id_formulario_ref' => $closureChecklistId,
+                    'id_pergunta' => isset($question['id_pergunta']) ? $question['id_pergunta'] : null,
+                    'comentario' => isset($question['comentario']) ? $question['comentario'] : null,
                 ]
             );
         }
