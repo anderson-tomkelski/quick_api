@@ -18,7 +18,8 @@ class Relato extends Model
         'id_revenda', 'id_usuario_cad', 'id_usuario_resp',
         'id_programa_denunciado', 'id_programa_relator',
         'id_funcao', 'dt_ocorrido', 'envolvido', 'detalhes',
-        'dt_cadastro', 'status', 'atribuido', 'oquefazer', 'obs'
+        'dt_cadastro', 'status', 'atribuido', 'oquefazer', 'obs',
+        'foto'
     ];
 
     /**
