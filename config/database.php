@@ -6,10 +6,10 @@ return array(
         # Our primary database connection
         'tenant' => array(
             'driver'    => 'mysql',
-            'host'      => 'localhost',
+            'host'      => '191.252.100.224',
             'database'  => '',
-            'username'  => 'admin',
-            'password'  => 'Mudar@123',
+            'username'  => '',
+            'password'  => 'Lino2019@',
             'charset'   => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix'    => '',
