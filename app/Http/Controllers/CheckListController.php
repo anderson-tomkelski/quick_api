@@ -86,7 +86,7 @@ class CheckListController extends Controller
                 'id_usuario' => $request->id_usuario,
                 'comentarios' => isset($request->comentarios) ? $request->comentarios : "",
                 'anexo' => isset($request->anexo) ? $request->anexo : "",
-                'data' => isset($request->data) ? $request->data : null,
+                'data' => date("Y-m-d H:i:s"),
                 'qtd_b' => isset($request->qtd_b) ? $request->qtd_b : 0,
                 'qtd_ok' => isset($request->qtd_ok) ? $request->qtd_ok : 0,
                 'qtd_nok' => isset($request->qtd_nok) ? $request->qtd_nok : 0,
@@ -109,7 +109,7 @@ class CheckListController extends Controller
                     'id_pergunta' => isset($question['id_pergunta']) ? $question['id_pergunta'] : null,
                     'respostaI' => isset($question['respostaI']) ? $question['respostaI'] : null,
                     'respostaT' => isset($question['respostaT']) ? $question['respostaT'] : null,
-                    'data' => isset($question['data']) ? $question['data'] : null,
+                    'data' => date("Y-m-d H:i:s"),
                     'id_colaborador' => isset($question['id_colaborador']) ? $question['id_colaborador'] : null,
                     'id_revenda' => isset($question['id_revenda']) ? $question['id_revenda'] : null,
                     'id_funcao' => isset($question['id_funcao']) ? $question['id_funcao'] : null
