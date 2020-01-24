@@ -69,6 +69,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
 
     $router->group(['prefix' => 'reuniao'], function () use ($router) {
         $router->get('', 'ReuniaoController@showAllReuniao');
+        $router->get(
+            'participantes/{idReuniao}', 
+            'ReuniaoController@showParticipantesByReuniaoId'
+        );
     });
 });
 
