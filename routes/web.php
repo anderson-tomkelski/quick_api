@@ -66,6 +66,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
 
         $router->post('salvar', 'CheckListController@saveChecklist');
     });
+
+    $router->group(['prefix' => 'reuniao'], function () use ($router) {
+        $router->get('', 'ReuniaoController@showAllReuniao');
+    });
 });
 
 $router->post('/api/login', 'TokenController@gerarToken');

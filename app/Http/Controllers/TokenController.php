@@ -38,7 +38,7 @@ class TokenController extends Controller
         $empresa = Empresa::where('id', $request->empresa)->first();
 
         config(['database.connections.tenant.database' => $empresa->base]);
-        config(['database.connections.tenant.username' => $empresa->base]);
+        //config(['database.connections.tenant.username' => $empresa->base]);
 
         $usuario = Login::where('usuario', $request->usuario)->first();
 
