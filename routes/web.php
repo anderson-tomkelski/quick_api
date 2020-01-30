@@ -75,6 +75,11 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
             'ReuniaoController@showParticipantesByReuniaoId'
         );
     });
+
+    $router->group(['prefix' => 'plano_acao'], function () use ($router) {
+        $router->get('', 'RelatoController@showAllPlanoAcao');
+        $router->post('', 'PlanoAcaoController@create');
+    });
 });
 
 $router->post('/api/login', 'TokenController@gerarToken');
