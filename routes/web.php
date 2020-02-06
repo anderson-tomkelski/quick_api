@@ -77,7 +77,7 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
     });
 
     $router->group(['prefix' => 'plano_acao'], function () use ($router) {
-        $router->get('', 'RelatoController@showAllPlanoAcao');
+        $router->get('', 'PlanoAcaoController@showAllPlanoAcao');
         $router->post('', 'PlanoAcaoController@create');
     });
 });
