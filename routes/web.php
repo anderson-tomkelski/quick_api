@@ -54,6 +54,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
 
     $router->group(['prefix' => 'usuario'], function () use ($router) {
         $router->post('', 'UsuarioController@showUsuarioByLogin');
+        $router->get(
+            '/reuniao/{id_reuniao}/unidade/{id_unidade}', 
+            'UsuarioController@showUsuariosByMeetingId'
+        );
     });
 
     $router->group(['prefix' => 'formulario'], function () use ($router) {
