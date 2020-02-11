@@ -35,8 +35,9 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
 
     $router->group(['prefix' => 'relato_infracao'], function () use ($router) {
         $router->get('', 'RelatoInfracaoController@showAllRelatoInfracao');
-        $router->get('tipo/{id_tipo}/local/{id_local}/motivo/{id_motivo}',
-        'RelatoInfracaoController@showRelatoInfracaoByIds'
+        $router->get(
+            'tipo/{id_tipo}/local/{id_local}/motivo/{id_motivo}',
+            'RelatoInfracaoController@showRelatoInfracaoByIds'
         );
     });
 
@@ -53,6 +54,11 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
 
     $router->group(['prefix' => 'usuario'], function () use ($router) {
         $router->post('', 'UsuarioController@showUsuarioByLogin');
+        $router->get(
+            '/reuniao/{id_reuniao}/unidade/{id_unidade}', 
+            'UsuarioController@showUsuariosByMeetingId'
+        );
+        $router->get('{id}', 'UsuarioController@showOneUsuario');
     });
 
     $router->group(['prefix' => 'formulario'], function () use ($router) {
@@ -65,6 +71,23 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         $router->get('perguntas/{formId}', 'CheckListController@showPerguntasByFormId');
 
         $router->post('salvar', 'CheckListController@saveChecklist');
+    });
+
+    $router->group(['prefix' => 'reuniao'], function () use ($router) {
+        $router->get('', 'ReuniaoController@showAllReuniao');
+        $router->get(
+            'participantes/{idReuniao}', 
+            'ReuniaoController@showParticipantesByReuniaoId'
+        );
+        $router->get(
+            'funcao/{idFuncao}/unidade/{idUniddade}', 
+            'ReuniaoController@showReuniaoByFunction'
+        );
+    });
+
+    $router->group(['prefix' => 'plano_acao'], function () use ($router) {
+        $router->get('', 'PlanoAcaoController@showAllPlanoAcao');
+        $router->post('', 'PlanoAcaoController@create');
     });
 });
 
