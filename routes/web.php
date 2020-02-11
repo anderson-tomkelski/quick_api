@@ -58,6 +58,7 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
             '/reuniao/{id_reuniao}/unidade/{id_unidade}', 
             'UsuarioController@showUsuariosByMeetingId'
         );
+        $router->get('{id}', 'UsuarioController@showOneUsuario');
     });
 
     $router->group(['prefix' => 'formulario'], function () use ($router) {
