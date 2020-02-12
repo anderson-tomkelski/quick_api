@@ -89,6 +89,14 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         $router->get('', 'PlanoAcaoController@showAllPlanoAcao');
         $router->post('', 'PlanoAcaoController@create');
     });
+
+    $router->group(['prefix' => 'tipo_chamado'], function () use ($router) {
+        $router->get('', 'TipoChamadoController@showAllTipoChamado');
+    });
+
+    $router->group(['prefix' => 'categoria'], function () use ($router) {
+        $router->get('tipo/{id_tipo}', 'CategoriaController@showCategoriaByTipoChamado');
+    });
 });
 
 $router->post('/api/login', 'TokenController@gerarToken');
