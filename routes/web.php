@@ -97,6 +97,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
     $router->group(['prefix' => 'categoria'], function () use ($router) {
         $router->get('tipo/{id_tipo}', 'CategoriaController@showCategoriaByTipoChamado');
     });
+
+    $router->group(['prefix' => 'chamado'], function () use ($router) {
+        $router->post('', 'ChamadoController@create');
+    });
 });
 
 $router->post('/api/login', 'TokenController@gerarToken');
