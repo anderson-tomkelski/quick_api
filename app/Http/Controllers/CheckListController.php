@@ -160,7 +160,7 @@ class CheckListController extends Controller
             if(!isset($question['foto']) || $question['foto'] == null) continue;
             
             $model = [
-                'id_formulario_ref' => $closureChecklistId,
+                'id_formulario_ref' =>  $request->id,
                 'id_pergunta' => isset($question['id_pergunta']) ? $question['id_pergunta'] : null,
                 'foto' => isset($question['foto']) ? $question['foto'] : null,
             ];
@@ -177,7 +177,7 @@ class CheckListController extends Controller
             if(!isset($question['comentario']) || $question['comentario'] == null) continue;
             
             $model = [
-                'id_formulario_ref' => $closureChecklistId,
+                'id_formulario_ref' =>  $request->id,
                 'id_pergunta' => isset($question['id_pergunta']) ? $question['id_pergunta'] : null,
                 'comentario' => isset($question['comentario']) ? $question['comentario'] : null,
             ];
@@ -189,7 +189,7 @@ class CheckListController extends Controller
                 $savedChecklist = FormularioComentario::insert($model);
             }        
         }
-        
+
         return response()->json($closureForm);
     }
 
