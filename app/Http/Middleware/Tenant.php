@@ -17,7 +17,7 @@ class Tenant
             $tenant = $request->header('Tenant');
             
             config(['database.connections.tenant.database' => $tenant]);
-            // config(['database.connections.tenant.username' => $tenant]);
+            config(['database.connections.tenant.username' => $tenant]);
 
             return $next($request);
         } catch (\Exception $e) {
