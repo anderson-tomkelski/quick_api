@@ -66,13 +66,18 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         $router->post('pendentes', 'CheckListController@showPendetesCheckList');
         $router->delete('pendentes/{id}', 'CheckListController@deletePendenteCheckList');
         $router->post('concluidos', 'CheckListController@showConcluidosCheckList');
-
+        
+        $router->get('getPhotosByFormId/{id}', 'CheckListController@getPhotosByFormId');
+        $router->get('getFormById/{id}', 'CheckListController@getFormById');
+        $router->get('getCommentsByFormId/{id}', 'CheckListController@getCommentsByFormId');
+        
         $router->get('assuntos/{formId}', 'CheckListController@showAssuntosByFormId');
         $router->get('perguntas/{formId}', 'CheckListController@showPerguntasByFormId');
-
+        
+        $router->post('update', 'CheckListController@update');
         $router->post('salvar', 'CheckListController@saveChecklist');
     });
-
+    
     $router->group(['prefix' => 'reuniao'], function () use ($router) {
         $router->get('', 'ReuniaoController@showAllReuniao');
         $router->get(
