@@ -74,7 +74,7 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         $router->get('assuntos/{formId}', 'CheckListController@showAssuntosByFormId');
         $router->get('perguntas/{formId}', 'CheckListController@showPerguntasByFormId');
         
-        $router->post('update', 'CheckListController@update');
+        $router->put('update', 'CheckListController@update');
         $router->post('salvar', 'CheckListController@saveChecklist');
     });
     
