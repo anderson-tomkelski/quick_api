@@ -206,7 +206,7 @@ class CheckListController extends Controller
                 'qtd_nok' => isset($request->qtd_nok) ? $request->qtd_nok : 0,
                 'id_empresa' => $request->id_empresa,
                 'perct' => isset($request->perct) ? $request->perct : 0,
-                'status' =>  $request->status
+                'status' =>  isset($request->status) ? $request->status : 1 
             ]
         );
 
