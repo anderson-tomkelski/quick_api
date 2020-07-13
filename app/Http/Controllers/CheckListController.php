@@ -6,7 +6,8 @@ use App\Pergunta;
 use App\Assunto;
 use App\FormularioFechamento;
 use App\FormularioSalvo;
-
+use App\FormularioComentario;
+use App\FormularioFoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -145,7 +146,7 @@ class CheckListController extends Controller
                 'data' => date("Y-m-d H:i:s"),
                 'id_colaborador' => isset($question['id_colaborador']) ? $question['id_colaborador'] : null,
                 'id_revenda' => isset($question['id_revenda']) ? $question['id_revenda'] : null,
-                'id_funcao' => isset($question['id_funcao']) ? $question['id_funcao'] : nul
+                'id_funcao' => isset($question['id_funcao']) ? $question['id_funcao'] : null
             ];
 
             if (isset($question['id'])) {
@@ -167,7 +168,13 @@ class CheckListController extends Controller
 
             if($question['id']) {
                 $savedChecklist = FormularioFoto::find($question['id']); 
-                $savedChecklist->update($model);
+
+                if( isset($savedChecklist) ) {
+                    $savedChecklist = FormularioFoto::find($question['id']); 
+                    $savedChecklist->update($model);    
+                } else {
+                    $savedChecklist = FormularioFoto::insert($model);
+                }
             } else {
                 $savedChecklist = FormularioFoto::insert($model);
             }
@@ -184,7 +191,13 @@ class CheckListController extends Controller
 
             if($question['id']) {
                 $savedChecklist = FormularioComentario::find($question['id']); 
-                $savedChecklist->update($model);
+                
+                if( isset($savedChecklist) ) {
+                    $savedChecklist = FormularioComentario::find($question['id']); 
+                    $savedChecklist->update($model);    
+                } else {
+                    $savedChecklist = FormularioComentario::insert($model);
+                }
             } else {
                 $savedChecklist = FormularioComentario::insert($model);
             }        

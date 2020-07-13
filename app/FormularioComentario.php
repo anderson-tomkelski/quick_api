@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class FormularioComentario extends Model
 {
-    protected $table = 'formulario_fotos';
+    protected $table = 'formulario_comentario';
 
     /**
      * The attributes that are mass assignable.
