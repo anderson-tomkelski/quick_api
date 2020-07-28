@@ -24,6 +24,16 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         $router->delete('{id}', 'RelatoTipoController@delete');
         $router->put('{id}', 'RelatoTipoController@update');
     });
+    
+    $router->group(['prefix' => 'training'], function () use ($router) {
+        $router->post('evaluationCourse', 'TreinamentoController@evaluationCourse');
+        $router->post('saveAnswers', 'TreinamentoController@saveAnswers');
+        $router->post('confirmPresence', 'TreinamentoController@confirmPresence');
+        $router->post('saveResult', 'TreinamentoController@saveResult');
+        $router->get('findEvaluationCourse', 'TreinamentoController@findEvaluationCourse');
+        $router->get('findAllPendingTraining', 'TreinamentoController@findAllPendingTraining');
+        $router->get('findQuestionnaires', 'TreinamentoController@findQuestionnaires');
+    });
 
     $router->group(['prefix' => 'relato_local'], function () use ($router) {
         $router->get('', 'RelatoLocalController@showAllRelatoLocal');
