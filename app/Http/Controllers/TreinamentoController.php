@@ -17,7 +17,7 @@ class TreinamentoController extends Controller {
 		$model = DB::table('treinamento_participantes')
 		-> where('id', $request->idTreinamento)
 		-> where('id_usuario', $request->id_usuario)
-		-> update([ 'status' => '0', 'aprovado' => '0', 'especial' => '2', 'participou' => '1']);
+		-> update([ 'status' => '1', 'aprovado' => '1', 'especial' => '2', 'participou' => '1']);
 		return response()->json($model);	
 	}
 
@@ -47,7 +47,8 @@ class TreinamentoController extends Controller {
 			->groupBy('correto')
 			->first();
 		
-		$isApproved = $response->result >= $request->n_minima ? '1' : '0';
+		$isApproved = ($response->result / $request->n_questoes * 10) >= $request->n_minima ? '1' : '0';
+		
 		$model = DB::table('treinamento_participantes')
 			-> where('id_treinamento_agenda', $request->id_treinamento_agenda)
 			-> where('id_usuario', $request->id_usuario)
