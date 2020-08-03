@@ -38,21 +38,14 @@ class TreinamentoController extends Controller {
 	}
 
 	public function saveResult(Request $request) {
-		$response = DB::table('questionario_resposta')
-			->select(DB::raw('count(correto) as result'))
-			->where('id_treinamento_agenda', '=', $request->id_treinamento_agenda)
-			->where('id_colaborador', '=', $request->id_usuario)
-			->where('tipo', '=', $request->tipo)
-			->where('correto', '=', '1')
-			->groupBy('correto')
-			->first();
-		
-		$isApproved = ($response->result / $request->n_questoes * 10) >= $request->n_minima ? '1' : '0';
+		$nota = $request->nota;
+
+		$isApproved = $nota >= $request->n_minima ? '1' : '0';
 		
 		$model = DB::table('treinamento_participantes')
 			-> where('id_treinamento_agenda', $request->id_treinamento_agenda)
 			-> where('id_usuario', $request->id_usuario)
-			-> update([ 'nota' => strval($response->result), 'status' => '1', 'aprovado' => $isApproved, 'especial' => '2', 'participou' => '1']);
+			-> update([ 'nota' => intval($request->nota), 'status' => '1', 'aprovado' => $isApproved, 'especial' => '2', 'participou' => '1']);
 
 		return response()->json(['isApproved' => intval($isApproved)]);	
 		
@@ -110,7 +103,8 @@ class TreinamentoController extends Controller {
 				$query->where('TP.status', '=', '0')
 				->where('LT.aplica_prova', '=', '2')
 				->where('TP.id_usuario', '=', $request->cod_usuario);
-    	})
+			})
+			->limit(6)
 			->get();
 		return response()->json($model);	
 	}
