@@ -14,7 +14,7 @@ class FormularioFechamento extends Model
      * @var array
      */
     protected $fillable = [
-      'status', 'id_formulario_ref', 'id_usuario', 'comentarios', 'anexo', 'formularios_fechamento', 'data', 'qtd_b', 'qtd_ok', 'qtd_nok', 'id_empresa', 'perct',
+      'status', 'id_formulario_ref', 'id_usuario', 'comentarios', 'anexo', 'formularios_fechamento', 'data', 'qtd_bom', 'qtd_ok', 'qtd_nok', 'qtd_na', 'id_empresa', 'perct',
     ];
 
     /**
