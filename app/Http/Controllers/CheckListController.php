@@ -122,9 +122,10 @@ class CheckListController extends Controller
             'comentarios' => isset($request->comentarios) ? $request->comentarios : "",
             'anexo' => isset($request->anexo) ? $request->anexo : "",
             'data' => date("Y-m-d H:i:s"),
-            'qtd_b' => isset($request->qtd_b) ? $request->qtd_b : 0,
+            'qtd_bom' => isset($request->qtd_bom) ? $request->qtd_bom : 0,
             'qtd_ok' => isset($request->qtd_ok) ? $request->qtd_ok : 0,
             'qtd_nok' => isset($request->qtd_nok) ? $request->qtd_nok : 0,
+            'qtd_na' => isset($request->qtd_na) ? $request->qtd_na : 0,
             'id_empresa' => $request->id_empresa,
             'perct' => isset($request->perct) ? $request->perct : 0,
             'status' =>  $request->status
@@ -214,9 +215,10 @@ class CheckListController extends Controller
                 'comentarios' => isset($request->comentarios) ? $request->comentarios : "",
                 'anexo' => isset($request->anexo) ? $request->anexo : "",
                 'data' => date("Y-m-d H:i:s"),
-                'qtd_b' => isset($request->qtd_b) ? $request->qtd_b : 0,
+                'qtd_bom' => isset($request->qtd_bom) ? $request->qtd_bom : 0,
                 'qtd_ok' => isset($request->qtd_ok) ? $request->qtd_ok : 0,
                 'qtd_nok' => isset($request->qtd_nok) ? $request->qtd_nok : 0,
+                'qtd_na' => isset($request->qtd_na) ? $request->qtd_na : 0,
                 'id_empresa' => $request->id_empresa,
                 'perct' => isset($request->perct) ? $request->perct : 0,
                 'status' =>  isset($request->status) ? $request->status : 1 
