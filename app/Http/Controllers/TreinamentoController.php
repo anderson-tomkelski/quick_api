@@ -104,7 +104,7 @@ class TreinamentoController extends Controller {
 				->where('LT.aplica_prova', '=', '2')
 				->where('TP.id_usuario', '=', $request->cod_usuario);
 			})
-			->limit(6)
+			->limit(10)
 			->get();
 		return response()->json($model);	
 	}
