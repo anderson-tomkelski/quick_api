@@ -17,7 +17,7 @@ class TreinamentoController extends Controller {
 		$model = DB::table('treinamento_participantes')
 		-> where('id', $request->idTreinamento)
 		-> where('id_usuario', $request->id_usuario)
-		-> update([ 'status' => '1', 'aprovado' => '0', 'especial' => '2', 'participou' => '1']);
+		-> update([ 'status' => '1', 'aprovado' => '0', 'especial' => '2', 'participou' => '2']);
 		return response()->json($model);	
 	}
 
