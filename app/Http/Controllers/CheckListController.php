@@ -38,7 +38,7 @@ class CheckListController extends Controller
                 ->where('FF.id_usuario', '=', $request->id_usuario)
                 ->where('FF.status', 0)
                 ->where('FO.status', 1)
-                ->limit(5)
+                ->limit(8)
                 ->get()
         );
     }
@@ -54,7 +54,7 @@ class CheckListController extends Controller
                 ->where('FF.id_usuario', '=', $request->id_usuario)
                 ->where('FF.status', 1)
                 ->where('FO.status', 1)
-                ->limit(5)
+                ->limit(8)
                 ->get()
         );
     }

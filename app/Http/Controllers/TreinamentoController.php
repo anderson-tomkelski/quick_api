@@ -17,7 +17,7 @@ class TreinamentoController extends Controller {
 		$model = DB::table('treinamento_participantes')
 		-> where('id', $request->idTreinamento)
 		-> where('id_usuario', $request->id_usuario)
-		-> update([ 'status' => '1', 'aprovado' => '0', 'especial' => '2', 'participou' => '2']);
+		-> update([ 'status' => '1', 'aprovado' => '1', 'especial' => '2', 'participou' => '1']);
 		return response()->json($model);	
 	}
 
@@ -70,6 +70,7 @@ class TreinamentoController extends Controller {
 			->select('QUE.id as id_questao', 'PR.id', 'PR.nome as prova', 'QUE.pergunta', 'QUE.opcao1', 'QUE.opcao2', 'QUE.opcao3', 'QUE.opcao4', 'QUE.resposta')
 			->join('provas as PR', 'QUE.id_prova', '=', 'PR.id')
 			->where('id_prova', '=', $request->id_prova)
+			->limit(isset($request->n_perguntas) ? $request->n_perguntas : 999)
 			->get();
 		return response()->json($model);	
 	}
@@ -104,7 +105,7 @@ class TreinamentoController extends Controller {
 				->where('LT.aplica_prova', '=', '2')
 				->where('TP.id_usuario', '=', $request->cod_usuario);
 			})
-			->limit(10)
+			->limit(8)
 			->get();
 		return response()->json($model);	
 	}
