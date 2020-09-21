@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\Pergunta;
@@ -10,6 +9,8 @@ use App\FormularioComentario;
 use App\FormularioFoto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
+date_default_timezone_set('America/Sao_Paulo');
 
 class CheckListController extends Controller
 {
