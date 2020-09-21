@@ -33,7 +33,6 @@ class ReuniaoController extends Controller
                     (SELECT empresa FROM empresa WHERE id = id_unidade) emp
                     FROM reuniao re WHERE id IN
                     (SELECT id_reuniao FROM participantes pa WHERE id_funcao = " . $idFuncao . ")
-                    AND id_unidade = " . $idUnidade . "
                     AND status = 1
                     ORDER BY 1 
                 ")
