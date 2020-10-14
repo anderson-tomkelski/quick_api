@@ -102,9 +102,16 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
 
     $router->group(['prefix' => 'plano_acao'], function () use ($router) {
         $router->get('', 'PlanoAcaoController@showAllPlanoAcao');
+        $router->get('findActionPlan', 'PlanoAcaoController@findActionPlan');
         $router->post('', 'PlanoAcaoController@create');
+        $router->get('{id}', 'PlanoAcaoController@findOne');
     });
 
+    $router->group(['prefix' => 'comentario'], function () use ($router) {
+        $router->get('', 'ComentarioController@find');
+        $router->post('', 'ComentarioController@create');
+    });
+    
     $router->group(['prefix' => 'tipo_chamado'], function () use ($router) {
         $router->get('', 'TipoChamadoController@showAllTipoChamado');
     });

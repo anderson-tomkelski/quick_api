@@ -10,9 +10,17 @@ use Illuminate\Support\Facades\DB;
 class PlanoAcaoController extends Controller
 {
 
-    public function showAllPlanoAcao()
-    {
+    public function showAllPlanoAcao() {
         return response()->json(PlanoAcao::all());
+    }
+
+
+    public function findActionPlan(Request $request) {
+        return response()->json(PlanoAcao::where('id_status', '<', '3')->where('id_responsavel', '=', $request->id_responsavel)->get());
+    }
+
+    public function findOne($id) {
+        return response()->json(PlanoAcao::find($id));
     }
 
     public function create(Request $request)
