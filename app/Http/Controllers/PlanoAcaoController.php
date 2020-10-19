@@ -20,7 +20,16 @@ class PlanoAcaoController extends Controller
     }
 
     public function findOne($id) {
-        return response()->json(PlanoAcao::find($id));
+        return response()->json(
+            DB::table('planodeacao as PLAN')
+            ->select(DB::raw('PLAN.*, RE.titulo, USER.nome as criador'))
+            ->join('reuniao as RE', 'RE.id', '=', 'PLAN.id_reuniao')
+            ->join('usuario as USER', 'USER.id', '=', 'PLAN.id_criador')
+            ->where('PLAN.id', '=', $id)
+            ->first()
+        );
+
+     #   return response()->json(PlanoAcao::find($id)->innerJoin('reuniao as RE', 'RE.id', '=', '147'));
     }
 
     public function create(Request $request)

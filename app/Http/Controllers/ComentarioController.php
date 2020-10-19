@@ -11,7 +11,10 @@ date_default_timezone_set('America/Sao_Paulo');
 class ComentarioController extends Controller {
 
 		public function find(Request $request) {
-			return response()->json(Comentario::where('id_plano', '=', $request->id_plano)->get());
+			return response()->json(Comentario::where('id_plano', '=', $request->id_plano)
+				->orderBy('data_cadastro')
+				->get()
+			);
 		}
 
 		public function create(Request $request) {
