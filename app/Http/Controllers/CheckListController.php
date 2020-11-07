@@ -102,9 +102,27 @@ class CheckListController extends Controller
 
     public function showPerguntasByFormId($formId)
     {
-        return response()->json(Pergunta::where(
-            'id_formulario', '=', $formId)->get()
-        );
+        $responses = Pergunta::where( 'id_formulario', '=', $formId)->get();
+
+        foreach ($responses as $response) {
+            if ($response->tipo == 6) {
+                $itens = array();
+
+                $values = DB::table('itens_selecao as IS')
+                ->select('*')
+                ->where('id_selecao', '=', $response->selecao)
+                ->where('status', '=', '1')
+                ->get();
+
+                foreach ($values as $item) {
+                    array_push($itens, $item->opcao);
+                }
+
+                $response->itens = $itens;
+            }
+        }
+
+        return  response()->json($responses);
     }
 
     public function showAssuntosByFormId($formId)
