@@ -41,4 +41,18 @@ class UsuarioController extends Controller
             )
         );
     }
+
+    public function updatePassword($request)
+    {
+        $expiracao = date('Y-m-d H:i', strtotime('+2 months'));
+        $password = password_hash($request->password, PASSWORD_DEFAULT);
+
+        $user = FormularioFechamento::find($request->id); 
+
+        $closureForm->update(['expiracao' => $expiracao,'senha' => $password,]);
+
+        return response()->json([
+            'message' => 'Senha atualizada com sucesso!'
+        ], 201);
+    }
 }

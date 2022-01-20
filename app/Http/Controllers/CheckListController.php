@@ -24,6 +24,12 @@ class CheckListController extends Controller
                 ->orderBy('F.formulario', 'asc')
                 ->where('PC.id_funcao', '=', $request->id_funcao)
                 ->where('F.status', 1)
+                ->where('F.id_revenda', '=', 0)
+                ->orWhere(function ($query) use ($request) {
+                    $query->where('PC.id_funcao', '=', $request->id_funcao);
+                    $query->where('F.status', 1);
+                    $query->where('F.id_revenda', '=', $request->id_revenda);
+                })
                 ->get()
         );
     }
@@ -93,6 +99,7 @@ class CheckListController extends Controller
 
     public function deletePendenteCheckList($id)
     {
+        DB::table('formulario_fotos')->where('id_formulario_ref', $id)->delete();
         DB::table('arquivos_formulario')->where('id_formulario_ref', $id)->delete();
         DB::table('formulario_comentario')->where('id_formulario_ref', $id)->delete();
         DB::table('formularios_salvos')->where('id_formulario_salvo', $id)->delete();
@@ -231,6 +238,7 @@ class CheckListController extends Controller
             [
                 'id_formulario_ref' => $request->id_formulario_ref,
                 'id_usuario' => $request->id_usuario,
+                'assinatura' => $request->assinatura ? $request->assinatura : "",
                 'comentarios' => isset($request->comentarios) ? $request->comentarios : "",
                 'anexo' => isset($request->anexo) ? $request->anexo : "",
                 'data' => date("Y-m-d H:i:s"),
@@ -289,5 +297,19 @@ class CheckListController extends Controller
 
         return response()->json($savedChecklist, 201);
 
+    }
+
+    public function savePhoto(Request $request) {
+        $savePhoto = DB::table('arquivos_formulario')->insert(
+            [
+                'id_formulario_ref' => $request->id_formulario_ref,
+                'id_formulario' => $request->id_formulario,
+                'id_pergunta' => $request->id_pergunta,
+                'nome' => $request->nome,
+                'tipo' => 2,
+            ]
+        );
+
+        return response()->json($savePhoto);
     }
 }

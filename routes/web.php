@@ -86,7 +86,9 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         
         $router->put('update', 'CheckListController@update');
         $router->post('salvar', 'CheckListController@saveChecklist');
-    });
+        $router->post('salvar', 'CheckListController@saveChecklist');
+        $router->post('salvarFoto', 'CheckListController@savePhoto');
+    }); 
     
     $router->group(['prefix' => 'reuniao'], function () use ($router) {
         $router->get('', 'ReuniaoController@showAllReuniao');
@@ -112,6 +114,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
         $router->post('', 'ComentarioController@create');
     });
     
+    $router->group(['prefix' => 'arquivos_relatos'], function () use ($router) {
+        $router->post('', 'ArquivosRelatosController@create');
+    });
+    
     $router->group(['prefix' => 'tipo_chamado'], function () use ($router) {
         $router->get('', 'TipoChamadoController@showAllTipoChamado');
     });
@@ -122,6 +128,10 @@ $router->group(['prefix' => 'api', 'middleware' => ['tenant', 'autenticador']], 
 
     $router->group(['prefix' => 'chamado'], function () use ($router) {
         $router->post('', 'ChamadoController@create');
+    });
+
+    $router->group(['prefix' => 'arquivo'], function () use ($router) {
+        $router->post('', 'ArquivoController@showAll');
     });
 });
 

@@ -10,7 +10,7 @@ class RelatoInfracaoController extends Controller
 
     public function showAllRelatoInfracao()
     {
-        return response()->json(RelatoInfracao::all());
+        return response()->json(RelatoInfracao::where('status', '=', 1)->get());
     }
 
     public function showRelatoInfracaoByIds($idTipo, $idLocal, $idMotivo)
